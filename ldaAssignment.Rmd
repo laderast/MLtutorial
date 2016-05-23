@@ -7,9 +7,9 @@ output: html_document
 
 In this assignment, you will run the Linear Discriminant Analysis (LDA) algorithm on the Wisconsin Breast Cancer Dataset. You will use this Markdown document to record your observations and code.
 
-Take a look at the features that are provided in the data. Your first step will be to decide what features you will use and justify it based on your knowledge.
+Take a look at the features that are provided in the data (there is a Readme in the `/data` folder). Your first step will be to decide what features you will use and justify it based on your knowledge about the problem. If you'd like more info, you can read the paper about how the data was generated here: [Nuclear Feature Extraction For Breast Cancer Tumor Diagnosis](https://www.researchgate.net/publication/2512520_Nuclear_Feature_Extraction_For_Breast_Tumor_Diagnosis). What features do you think will distinguish best between Malignant and Benign cancer cells?
 
-The first step is to load the data (in the `/data/` folder).
+The first step is to load the data (in the `/data/` folder). What kind of data is it? What command will you use?
 
 ```{r}
 ##Write your data loading code here
@@ -19,7 +19,7 @@ The first step is to load the data (in the `/data/` folder).
 ##Are there any concerns?
 ```
 
-Based on your reading of the dataset, you may want to select some features to include and some to exclude. 
+Based on your reading of the dataset, you may want to select some features to include and some to exclude. (Hint: you can use the `select()` command from the `dplyr` package to select particular features.)
 
 ```{r}
 

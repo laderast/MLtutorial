@@ -7,6 +7,14 @@ output: html_document
 
 In this Markdown document, I show how to run Linear Discriminant Analysis (LDA) and Classification Trees on the dataset. 
 
+Before you do anything else, make sure that you have the following packages installed:
+
+```{r}
+library(knitr)
+library(MASS)
+library(tree)
+```
+
 Your number one step is to try using `knitr` to build this document and view the output. Use the `Knit HTML` button right above the source window. For the workshop, you will be modifying two different Markdown documents (`ldaAssignment.Rmd` and `CTreeAssignment.Rmd`) to share your work.
 
 The first step is to reduce the Iris dataset to a 2-class problem, to make it easier to understand. We'll use this dataset on the Classification Tree algorithm as well.
@@ -70,7 +78,7 @@ Here we plot the LDA object, in order to assess how well it discriminates betwee
 plot(ldaIris)
 ```
 
-Let's evaluate the discriminant using `predict()` on the test set. How do we read this table. What is our percent misclassified on the test set? How do we calculate it? (Hint: you can use the `diag()` function to just grab the values from the diagonals).
+Let's evaluate the discriminant using `predict()` on the test set. What is our percent misclassified on the test set? How do we calculate it? (Hint: you can use the `diag()` function to just grab the values from the diagonals, which is probably useful).
 
 ```{r}
 #Evaluate the class predictions on the training data

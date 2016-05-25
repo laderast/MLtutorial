@@ -7,9 +7,9 @@ output: html_document
 
 In this assignment, you will run the Classification Tree algorithm on the Wisconsin Breast Cancer Dataset. You will use this Markdown document to record your observations and code.
 
-Take a look at the features that are provided in the data. Your first step will be to decide what features you will use and justify it based on your knowledge.
+Take a look at the features that are provided in the data (there is a Readme in the `/data` folder). Your first step will be to decide what features you will use and justify it based on your knowledge about the problem. If you'd like more info, you can read the paper about how the data was generated here: [Nuclear Feature Extraction For Breast Cancer Tumor Diagnosis](https://www.researchgate.net/publication/2512520_Nuclear_Feature_Extraction_For_Breast_Tumor_Diagnosis). What features do you think will distinguish best between Malignant and Benign cancer cells?
 
-The first step is to load the data (in the `/data/` folder).
+The first step is to load the data (in the `/data/` folder). Don't forget to load the appropriate libraries you need.
 
 ```{r}
 ##Write your data loading code here
@@ -19,7 +19,7 @@ The first step is to load the data (in the `/data/` folder).
 ##Are there any concerns?
 ```
 
-Based on your reading about the dataset, you may want to select some features to include and some to exclude. 
+Based on your reading about the dataset, you may want to select some features to include and some to exclude. Use dplyr to select your features.
 
 ```{r}
 
@@ -37,11 +37,13 @@ Plot the tree and examine it. How complex is it?
 ##write any plotting code here.
 ```
 
-Evaluate your learner on the test set. Does the test data give you any confidence that you built a good learner?
+Evaluate your learner on the test set. Does the test data give you any confidence that you built a good learner? What is your interpretation of the results? Do you think the problem is an easy or hard one? 
 
 ```{r}
 ##write any evaluation code here
 ##
 ```
 
-Compare your results on classifying the test set with both algorithms. Is there a way to see compare the misclassifcations? Did both algorithms do equally well?
+
+
+If you have time, try building a classification tree using all the features, not just the features you selected. Does it do any better than your selected features? (Hint: compare the predictions from each tree.)

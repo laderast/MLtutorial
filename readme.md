@@ -12,7 +12,7 @@ You will open the RMarkdown (`.Rmd`) files, which consist of the following files
 
 - `irisLdaCTrees.Rmd` - Example Rmarkdown showing how to run Linear Discriminant Analysis (lda) and Classification trees on the iris dataset.
 - `ldaAssignment.Rmd` - Worksheet to fill out for LDA analysis on Breast Cancer Dataset. Adapt code from `irisLdaCTrees.Rmd` and place in here with your interpretation of the results. When you're done, you can knit the results using the `knit` command above the window.
-- `treeAssignment.Rmd` - Worksheet to fill out for
+- `treeAssignment.Rmd` - Worksheet to fill out for Classification Tree analysis on Breast Cancer Dataset. 
 
 Data Files consist of the following
 

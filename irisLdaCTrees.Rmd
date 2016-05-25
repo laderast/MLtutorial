@@ -20,8 +20,11 @@ Your number one step is to try using `knitr` to build this document and view the
 The first step is to reduce the Iris dataset to a 2-class problem, to make it easier to understand. We'll use this dataset on the Classification Tree algorithm as well.
 
 ```{r message=FALSE}
+#Here I set the random seed so I can reproduce all of the random subsetting
 set.seed(11111)
+
 library(dplyr)
+#load the iris dataset
 data(iris)
 
 #select only "versicolor" and "virginica" species from data
@@ -69,7 +72,7 @@ library(MASS)
 ldaIris <- lda(Species ~ . , data=trainData)
 
 ##If we just wanted to run the LDA using Petal.Length and Petal.Width, we'd run it like this:
-ldaIris2 <- lda(Species ~ Petal.Length + Petal.Width, data=trainData)
+#ldaIris2 <- lda(Species ~ Petal.Length + Petal.Width, data=trainData)
 ```
 
 Here we plot the LDA object, in order to assess how well it discriminates between the two classes. This is a conditional histogram that shows the value of each sample when projected onto the linear discriminant. Ideally, we want to have all the samples for one class on one side of the histogram and all the samples on the other side of the histogram on the other. Is that the case for this dataset?

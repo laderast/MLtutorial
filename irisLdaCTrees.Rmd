@@ -58,6 +58,8 @@ testData <- iris2[-trainDataIndices,]
 nrow(testData)
 ```
 
+In summary: our training data has `r nrow(trainData)` samples and our training set has `r nrow(testData)` samples.
+
 #Running the LDA algorithm
 
 Here I run LDA on the `iris` dataset using the `lda()` function in the MASS package. I use the formula interface to specify the class. 

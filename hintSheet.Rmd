@@ -1,0 +1,138 @@
+---
+title: "Hintsheet for Machine Learning"
+author: "Ted Laderas"
+date: "May 25, 2016"
+output: html_document
+---
+
+In this document, I give you some hints for how to adapt the iris code for the breast cancer dataset. Only use this if you're stuck. You'll learn much more if you work this out on your own.
+
+##How do I load data?
+
+You can use either `read.table()` or `read.delim()`. Because the data is tab-delimited, we can use `read.delim()`, whose defaults are (`sep="\t"` and `header=TRUE`).
+
+```{r}
+#the fast shortcut way
+trainData <- read.delim("data/trainData.txt")
+
+#the longer way (but you have more control)
+trainData <- read.table("data/trainData.txt", sep="\t", header=TRUE)
+
+head(trainData)
+
+#also load the test data
+testData <- read.delim("data/testData.txt")
+
+head(testData)
+```
+
+##How do I do feature selection?
+
+I find it easier to do the feature selection by selecting columns, rather than use the formula interface in both `lda()` and `tree()`. You can use dplyr::select() for this, or you can use normal subsetting, or you can grep on the column names. 
+
+```{r}
+library(dplyr)
+
+#using dplyr (kind of the long way)
+trainDataSelect <- trainData %>% select(Class, radius.Mean, texture.Mean, area.Mean)
+
+#using grep() to grab all column numbers with "Mean" in them
+meanColumnIndex <- grep("Mean",colnames(trainData))
+meanColumnIndex
+
+#get only those variables with mean
+trainDataSelect2 <- trainData[,meanColumnIndex]
+head(trainDataSelect2)
+
+#we also want Class, so we add a "1"
+trainDataSelect3 <- trainData[,c(1,meanColumnIndex)]
+head(trainDataSelect3)
+```
+
+##How do I run LDA?
+
+If you have done your feature selection using column selection (as above), then running LDA on the data is pretty simple. Our class column is called `Class` and we want to use everything else in the data.frame as our features.
+
+```{r}
+library(MASS)
+#fit LDA to data
+ldaFit <- lda(Class ~ . , data=trainDataSelect3)
+
+#plot LDA results
+plot(ldaFit)
+```
+
+##How do I assess accuracy on the Test Data?
+
+You can use `predict()` on the `ldaFit` object you just created on the `testData` data frame (for more information, see `?predict.lda`). Note that we don't have to do feature selection on our testData, since the features are prespecified in our `ldaFit` object.
+
+```{r}
+#predict on testData (generates a )
+ldaTest <- predict(ldaFit, testData)
+
+#get class assignments from LDA test
+classPredLDA <- ldaTest$class
+
+#compare  
+confusionMatrixLDA <- table(testData$Class, classPredLDA)
+
+confusionMatrixLDA
+
+#percentCorrect = # correctly classified (diagonal values) / # total cases
+#what is percentMisclassfied?
+percentCorrect <- sum(diag(confusionMatrixLDA))/sum(confusionMatrixLDA) * 100
+
+percentCorrect
+```
+
+##How do I run `tree()` on the Breast Cancer Data?
+
+If you've selected your features, running `tree()` is very similar to running `lda()`. 
+
+```{r}
+library(tree)
+trainTree <- tree(Class ~ ., data=trainDataSelect3)
+
+#plot the resulting classification tree
+plot(trainTree)
+text(trainTree, all=T)
+```
+
+##How do I evaluate my tree?
+
+Very similar to `lda()`, we can also use the `predict()` function on our `trainTree` object. Note that the interface is slightly different than for the lda object (for more info, use `?predict.tree`). 
+
+```{r}
+#note here we specify that we directly want the classes
+#this doesn't work for lda objects, only tree objects!
+classPredTree <- predict(trainTree, newdata=testData, type="class")
+confusionMatrixTree <- table(testData$Class, classPredTree)
+confusionMatrixTree
+```
+
+##How do we compare results?
+
+We can use the magic of `data.frame()` to compare results using dplyr.
+
+```{r}
+compareResultFrame <- data.frame(trueClass=testData$Class, classPredLDA, classPredTree)
+compareResultFrame
+
+#use dplyr to count misclassifications
+
+#any mistakes
+anyMistakes <- compareResultFrame %>% filter(trueClass != classPredLDA | trueClass != classPredTree)
+anyMistakes
+
+#differences between LDA and Tree
+treeLDAdifferences <- compareResultFrame %>% filter(classPredLDA != classPredTree)
+treeLDAdifferences
+
+#where LDA did better than Tree
+compareResultFrame %>% filter(trueClass == classPredLDA & classPredLDA != classPredTree)
+
+#where Tree did better than LDA
+compareResultFrame %>% filter(trueClass == classPredTree & classPredLDA != classPredTree)
+
+
+```

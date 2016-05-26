@@ -9,7 +9,7 @@ In this assignment, you will run the Classification Tree algorithm on the Wiscon
 
 Take a look at the features that are provided in the data (there is a Readme in the `/data` folder). Your first step will be to decide what features you will use and justify it based on your knowledge about the problem. If you'd like more info, you can read the paper about how the data was generated here: [Nuclear Feature Extraction For Breast Cancer Tumor Diagnosis](https://www.researchgate.net/publication/2512520_Nuclear_Feature_Extraction_For_Breast_Tumor_Diagnosis). What features do you think will distinguish best between Malignant and Benign cancer cells?
 
-The first step is to load the data (in the `/data/` folder). Don't forget to load the appropriate libraries you need.
+The first step is to load the data (in the `/data/` folder). Don't forget to load the appropriate libraries you need. If you need help or get stuck, please note that there is a hintSheet called `hintSheet.Rmd` in the folder. 
 
 ```{r}
 ##Write your data loading code here
@@ -43,7 +43,5 @@ Evaluate your learner on the test set. Does the test data give you any confidenc
 ##write any evaluation code here
 ##
 ```
-
-
 
 If you have time, try building a classification tree using all the features, not just the features you selected. Does it do any better than your selected features? (Hint: compare the predictions from each tree.)

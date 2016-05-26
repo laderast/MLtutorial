@@ -109,7 +109,7 @@ library(tree)
 trainTree <- tree(Species ~ ., data=trainData)
 ```
 
-Here we plot the tree that results from the training the tree. Is there anything that you notice?
+Here we plot the tree that results from the training the tree. Is there anything that you notice? The decision tree basically tries to separate the data into different classes by partitioning the data. Anything that meets the statement at the top of the branch becomes classified with the branch at the right of the assignent.
 
 ```{r}
 #note that you have to use the text line after the plot command. Otherwise, the plot has no labels!
@@ -117,7 +117,7 @@ plot(trainTree)
 text(trainTree, all=T)
 ```
 
-Our tree seems to be a little too complicated, but let's try it on the test dataset. Let's look at the performance of the tree on our test data. What is the percent misclassified?
+Our tree seems to be a little too complicated (it is finding partitions within the versicolor population), but let's try it on the test dataset. Let's look at the performance of the tree on our test data. What is the percent misclassified?
 
 ```{r}
 #note that the predict() interface is different for tree objects

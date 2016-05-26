@@ -9,7 +9,11 @@ In this assignment, you will run the Linear Discriminant Analysis (LDA) algorith
 
 Take a look at the features that are provided in the data (there is a Readme in the `/data` folder). Your first step will be to decide what features you will use and justify it based on your knowledge about the problem. If you'd like more info, you can read the paper about how the data was generated here: [Nuclear Feature Extraction For Breast Cancer Tumor Diagnosis](https://www.researchgate.net/publication/2512520_Nuclear_Feature_Extraction_For_Breast_Tumor_Diagnosis). What features do you think will distinguish best between Malignant and Benign cancer cells?
 
+<<<<<<< HEAD
 The first step is to load the data (in the `/data/` folder). What kind of data is it? What command will you use? Don't forget to load any libraries you might need. If you need help or get stuck, please note that there is a Hint Sheet called `hintSheet.Rmd` in the folder. 
+=======
+The first step is to load the data (in the `/data/` folder). What kind of data is it? What command will you use? Don't forget to load any libraries you might need. If you need help 
+>>>>>>> a4fd0d8b8dc8f2ab3f7f4cb374d56832f13983d2
 
 ```{r}
 ##Write your data loading code here
